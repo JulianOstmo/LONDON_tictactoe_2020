@@ -1,0 +1,28 @@
+{
+  "name": "tictactoe_ddd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverageAll --verbose",
+    "test:watch": "jest --watchAll",
+    "lint": "eslint . --cache --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.2",
+    "jest": "^26.4.2",
+    "prettier": "^2.1.2"
+  },
+  "dependencies": {
+    "@types/jest": "^26.0.14"
+  }
+}

@@ -1,0 +1,23 @@
+DDD + BDD --> TDD = London
+
+events chain
+---
+A . The game started with painting an empty board.
+B . The player X is painting the pin into the board.
+
+
+---
+BDD into gherkin --> PO + QA ==> Devs
+A. 
+B.
+
+---
+TDD 
+A.1. game starts
+A.2. board painted
+A - Green
+
+B.1. playerX --> pin == X
+B.2. paint pinX on the board 
+     ??? rules --> empty cell into the board
+     +++ complexity
