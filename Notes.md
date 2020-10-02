@@ -16,9 +16,9 @@
 
 # Refactoring
 - Create a beforeAll empty board for the tests
-- Add eslint & prettier
+✅ - Add eslint & prettier
 - Add fixtures for the different states
-- Make cells a space rather than empty
+✅ - Make cells a space rather than empty
 
 # TechDebt for Mike's IDE:
 - fix the annoying jest snippet that isn't working!!!!!! :ARGHHHHH" @types/jest

@@ -1,9 +1,12 @@
 class Player {
-    constructor(pin) {
-      this.pin = pin;
-    }
-  
+  constructor(pin, board) {
+    this.pin = pin;
+    this.board = board;
   }
-  
-  module.exports = Player;
-  
+
+  placePin(position) {
+    this.board.placesThePinOnPosition(this.pin, position);
+  }
+}
+
+module.exports = Player;

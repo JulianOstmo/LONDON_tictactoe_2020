@@ -196,5 +196,7 @@
 	</array>
 	<key>Version</key>
 	<string>1.0</string>
+	<key>paint</key>
+	<integer>4</integer>
 </dict>
 </plist>

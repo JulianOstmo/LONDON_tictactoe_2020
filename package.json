@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverageAll --verbose",
-    "test:watch": "jest --watchAll",
+    "test": "jest --coverage --verbose",
+    "test:watch": "jest --watchAll --coverage --verbose",
     "lint": "eslint . --cache --fix"
   },
   "author": "",

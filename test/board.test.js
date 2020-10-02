@@ -11,19 +11,18 @@ describe('Game Board Creation', () => {
     const board = new Board();
     expect(board.cells).toEqual([' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']);
   });
-
-  it('expect the game board to be painted on the screen', () => {
-    const board = new Board();
-    expect(board.render()).toBe(' | | \n-+-+-\n | | \n-+-+-\n | | \n');
-  });
 });
 
-describe('Player X paints the X pin on the board', () => {
-    it('expect the game board to have a single "X" placed in the upper left postition', () => {
-      const board = new Board();
-      
-      board.placePin("X", 0);
-      expect(board.render()).toBe('X| | \n-+-+-\n | | \n-+-+-\n | | \n');
-    });
-
+describe('The Game Board is correctly rendered in an ASCII pretty print format', () => {
+  it('expect the game board to be painted on the screen', () => {
+    const board = new Board();
+    expect(board.showsTheBoardAsASCII()).toBe(' | | \n-+-+-\n | | \n-+-+-\n | | \n');
   });
+
+  it('expect the game board to have a single "X" placed in the upper left postition', () => {
+    const board = new Board();
+
+    board.placesThePinOnPosition('X', 0);
+    expect(board.showsTheBoardAsASCII()).toBe('X| | \n-+-+-\n | | \n-+-+-\n | | \n');
+  });
+});
