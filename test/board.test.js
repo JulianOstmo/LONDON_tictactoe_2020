@@ -26,3 +26,20 @@ describe('The Game Board is correctly rendered in an ASCII pretty print format',
     expect(board.showsTheBoardAsASCII()).toBe('X| | \n-+-+-\n | | \n-+-+-\n | | \n');
   });
 });
+
+// Vertical Victory
+// describe('The Game Board determines the vertical victory', () => {
+//   it('expect the victory to be on the left column', () => {
+//     const board = new Board();
+
+//     board.placesThePinOnPosition('X', 0);
+//     board.placesThePinOnPosition('O', 4);
+//     board.placesThePinOnPosition('X', 3);
+//     board.placesThePinOnPosition('O', 1);
+//     board.placesThePinOnPosition('X', 6);
+
+//     const result = board.hasVerticalWinner();
+//     expect(result).toBeTruthy();
+//   });
+// });
+

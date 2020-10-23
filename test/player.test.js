@@ -29,3 +29,40 @@ describe('Player places pin', () => {
     expect(playerX.board.showsTheBoardAsASCII()).toBe('X| | \n-+-+-\n | | \n-+-+-\n | | \n');
   });
 });
+
+describe('Vertical Victory', () => {
+  it('Player X - Moves compliant with the rules to have a board with the player X won in vertical on the left side of it.', () => {
+    const board = new Board();
+    const playerX = new Player('X', board);
+    const playerO = new Player('O', board);
+
+    //   - X - top left
+    playerX.placePin(0);
+    //   - O - Middle
+    playerO.placePin(4);
+    //   - X - middle left
+    playerX.placePin(3);
+    //   - O - top middle
+    playerO.placePin(1);
+    //   - X - bottom left
+    playerX.placePin(6);
+    //   - X wins --> expect 
+    expect(board.announceTheWinner()).toBe("X");
+  });
+
+  it('Player O - Moves compliant with the rules to have a board with the player O won in vertical on the left side of it.', () => {
+    // - **BRUTE FORCE** Test scenario : Moves
+    const board = new Board();
+    const playerX = new Player('X', board);
+    const playerO = new Player('O', board); // DRY!!!
+
+    // - X - middle
+    // - O - middle left
+    // - X - top middle
+    // - O - bottom left
+    // - X - middle right
+    // - 0 - top left
+    // - O wins --> expect
+    expect(board.announceTheWinner()).toBe("O");
+  });
+});
