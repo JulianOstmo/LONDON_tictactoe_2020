@@ -1,5 +1,6 @@
 const Player = require('../src/player');
 const Board = require('../src/board');
+const EMPTY_BOARD = require("./testDoubles/EMPTY_BOARD");
 
 describe('Player creation', () => {
   it('expect player X is created with a X as pin', () => {
@@ -21,12 +22,15 @@ describe('Player creation', () => {
   });
 });
 
+
 describe('Player places pin', () => {
   test('expect player "X" to place an X in the upper left postition', () => {
     const board = new Board();
     const playerX = new Player('X', board);
     playerX.placePin(0);
-    expect(playerX.board.showsTheBoardAsASCII()).toBe('X| | \n-+-+-\n | | \n-+-+-\n | | \n');
+    expect(playerX.board.showsTheBoardAsASCII()).toBe(
+      'X| | \n-+-+-\n | | \n-+-+-\n | | \n',
+    );
   });
 });
 
@@ -35,7 +39,6 @@ describe('Vertical Victory', () => {
     const board = new Board();
     const playerX = new Player('X', board);
 
-    //   - X - top left
     playerX.placePin(0);
     expect(board.cells).toEqual(['X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']);
   });
@@ -45,9 +48,7 @@ describe('Vertical Victory', () => {
     const playerX = new Player('X', board);
     const playerO = new Player('O', board);
 
-    //   - X - top left
     playerX.placePin(0);
-    //   - O - Middle
     playerO.placePin(4);
     expect(board.cells).toEqual(['X', ' ', ' ', ' ', 'O', ' ', ' ', ' ', ' ']);
   });
@@ -57,95 +58,109 @@ describe('Vertical Victory', () => {
     const playerX = new Player('X', board);
     const playerO = new Player('O', board);
 
-    //   - X - top left
     playerX.placePin(0);
-    //   - O - Middle
     playerO.placePin(4);
-    //   - X - middle left
     playerX.placePin(3);
-    //   - O - top middle
     playerO.placePin(1);
-    //   - X - bottom left
     playerX.placePin(6);
-    // CI TEST
     expect(board.cells).toEqual(['X', 'O', ' ', 'X', 'O', ' ', 'X', ' ', ' ']);
-    //   - X wins --> expect 
-    expect(board.announceTheWinner()).toBe("X");
+    expect(board.announceTheWinner()).toBe('X');
   });
 
-  // it('Player O - Moves compliant with the rules to have a board with the player O won in vertical on the left side of it.', () => {
-    // - **BRUTE FORCE** Test scenario : Moves
-    // const board = new Board();
-    // const playerX = new Player('X', board);
-    // const playerO = new Player('O', board); // DRY!!!
-
-    // - X - middle
-    // - O - middle left
-    // - X - top middle
-    // - O - bottom left
-    // - X - middle right
-    // - 0 - top left
-    // - O wins --> expect
-  //   expect(board.announceTheWinner()).toBe("O");
-  // });
-
-  
-  
-  
   describe('Moves compliant with the rules to get a game outcome', () => {
-      let playerX;
-      let playerO;
-      let board;
+    let playerX;
+    let playerO;
+    let board;
 
     beforeEach(() => {
-        board = new Board();
-        playerX = new Player('X', board);
-        playerO = new Player('O', board);
-      });
+      board = new Board();
+      playerX = new Player('X', board);
+      playerO = new Player('O', board);
+    });
 
-      it('player O wins with a Diagonal Victory (/) ', () => {
-        //   - X - top left
-        playerX.placePin(0);
-        //   - O - Middle left
-        playerO.placePin(2);
-        //   - X - top middle
-        playerX.placePin(1);
-        //   - O - bottom left
-        playerO.placePin(4);
-        //   - X - middle left
-        playerX.placePin(3);
-        //   - O - bottom left
-        playerO.placePin(6);
-        expect(board.cells).toEqual(['X', 'X', 'O', 'X', 'O', ' ', 'O', ' ', ' ']);
-        expect(board.announceTheWinner()).toBe("O");
-      });
+    it('player O wins with a Diagonal Victory', () => {
+      playerX.placePin(0);
+      playerO.placePin(2);
+      playerX.placePin(1);
+      playerO.placePin(4);
+      playerX.placePin(3);
+      playerO.placePin(6);
+      expect(board.cells).toEqual([
+        'X',
+        'X',
+        'O',
+        'X',
+        'O',
+        ' ',
+        'O',
+        ' ',
+        ' ',
+      ]);
+      expect(board.announceTheWinner()).toBe('O');
+    });
 
-      it.skip('player X places pin on top left', () => {
-        //   - X - top left
-        playerX.placePin(0);
-        // CI TEST
-        expect(board.cells).toEqual(['X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']);
-        //   - X wins --> expect 
-        expect(board.announceTheWinner()).toBe("No winner");
-      });
-      it('player X wins with an horizontal top line', () => {
-        //   - X - top left
-        playerX.placePin(0);
-        //   - O - Middle left
-        playerO.placePin(4);
-        //   - X - top middle
-        playerX.placePin(1);
-        //   - O - bottom left
-        playerO.placePin(6);
-        //   - X - top right
-        playerX.placePin(2);
-        // CI TEST
-        expect(board.cells).toEqual(['X', 'X', 'X', ' ', 'O', ' ', 'O', ' ', ' ']);
-        //   - X wins --> expect 
-        expect(board.announceTheWinner()).toBe("X");
-      });
+    it.skip('player X places pin on top left', () => {
+      playerX.placePin(0);
+      expect(board.cells).toEqual([
+        'X',
+        ' ',
+        ' ',
+        ' ',
+        ' ',
+        ' ',
+        ' ',
+        ' ',
+        ' ',
+      ]);
+      expect(board.announceTheWinner()).toBe('No winner');
+    });
 
+    it('player X wins with an horizontal top line', () => {
+      playerX.placePin(0);
+      playerO.placePin(4);
+      playerX.placePin(1);
+      playerO.placePin(6);
+      playerX.placePin(2);
+      expect(board.cells).toEqual([
+        'X',
+        'X',
+        'X',
+        ' ',
+        'O',
+        ' ',
+        'O',
+        ' ',
+        ' ',
+      ]);
+      expect(board.announceTheWinner()).toBe('X');
+    });
+  });
 });
 
+describe('When a move is made, it should be shown to the user', () => {
+  const mockConsole = jest.spyOn(global.console, 'log');
+  mockConsole.mockImplementation((val) => val);
+  
+  // const mockConsole = jest.fn((val) => val);
+  // global.console.log = mockConsole;
+
+  beforeEach(() => {
+    mockConsole.mockClear();
+  });
+
+  it('expect the user to see an empty board at the start of the game', () => {
+    const board = new Board();
+    
+    board.renderToConsole(board.showsTheBoardAsASCII());
+    
+    expect(mockConsole).toBeCalledWith(EMPTY_BOARD);
+    // expect(mockConsole).toBeCalledWith(EMPTY_BOARD);
+    // expect(mockConsole.mock.results[0].value).toBe(EMPTY_BOARD);
+
+  });
+
+  // it('expect the user to see a board with a X in the upper left position', () => {
+    
+  // });
   
 });

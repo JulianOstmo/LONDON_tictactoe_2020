@@ -48,7 +48,9 @@
     - Finish off the horizonal victory scenario
     - Tackle Tech Debt (Refactor)
   ## Pomodoro 2
+    - Draw?
   ## Pomodoro 3
+
 
 
 ---

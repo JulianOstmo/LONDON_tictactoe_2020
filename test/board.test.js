@@ -1,5 +1,4 @@
 const Board = require('../src/board');
-// const Player = require('../src/player');
 
 describe('Game Board Creation', () => {
   it('expect the game board is created ', () => {
@@ -16,14 +15,18 @@ describe('Game Board Creation', () => {
 describe('The Game Board is correctly rendered in an ASCII pretty print format', () => {
   it('expect the game board to be painted on the screen', () => {
     const board = new Board();
-    expect(board.showsTheBoardAsASCII()).toBe(' | | \n-+-+-\n | | \n-+-+-\n | | \n');
+    expect(board.showsTheBoardAsASCII()).toBe(
+      ' | | \n-+-+-\n | | \n-+-+-\n | | \n',
+    );
   });
 
   it('expect the game board to have a single "X" placed in the upper left postition', () => {
     const board = new Board();
 
     board.placesThePinOnPosition('X', 0);
-    expect(board.showsTheBoardAsASCII()).toBe('X| | \n-+-+-\n | | \n-+-+-\n | | \n');
+    expect(board.showsTheBoardAsASCII()).toBe(
+      'X| | \n-+-+-\n | | \n-+-+-\n | | \n',
+    );
   });
 });
 
@@ -42,4 +45,3 @@ describe('The Game Board is correctly rendered in an ASCII pretty print format',
 //     expect(result).toBeTruthy();
 //   });
 // });
-
