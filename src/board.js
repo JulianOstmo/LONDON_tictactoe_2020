@@ -1,33 +1,72 @@
 class Board {
   constructor() {
     this.cells = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
+    this.outcome = null;
+
+    this.renderToConsole(this.showsTheBoardAsASCII());
   }
 
   placesThePinOnPosition(pin, position) {
     this.cells[position] = pin;
+    this.validateBoard(pin);
+    this.renderToConsole(this.showsTheBoardAsASCII());
   }
 
-  // payload
-  // console.log
   showsTheBoardAsASCII() {
-    return `${this.cells[0]}|${this.cells[1]}|${this.cells[2]}\n-+-+-\n${this.cells[3]}|${this.cells[4]}|${this.cells[5]}\n-+-+-\n${this.cells[6]}|${this.cells[7]}|${this.cells[8]}\n`;
+    const board = [
+      `${this.cells[0]}|${this.cells[1]}|${this.cells[2]}`,
+      `${this.cells[3]}|${this.cells[4]}|${this.cells[5]}`,
+      `${this.cells[6]}|${this.cells[7]}|${this.cells[8]}`,
+    ].join('\n-+-+-\n');
+
+    const outcomeStatement = (() => {
+      if (this.outcome === 'DRAW') {
+        return 'The game was a draw!';
+      }
+
+      if (this.outcome) {
+        return `Player ${this.outcome} has won`;
+      }
+
+      return '';
+    })();
+
+    return `${board}\n${outcomeStatement}`;
   }
 
   renderToConsole(payload) {
     console.log(payload);
   }
 
-  announceTheWinner() {
-    const diagonalWin = ['X', 'X', 'O', 'X', 'O', ' ', 'O', ' ', ' '].join();
+  validateBoard(pin) {
+    const winStates = [
+      [0, 4, 8], // LTR DIAG
+      [2, 4, 6], // RTL DIAG
+      [0, 1, 2], // TOP HOR
+      [3, 4, 5], // MID HOR
+      [6, 7, 8], // BOT HOR
+      [0, 3, 6], // LEFT VERT
+      [1, 4, 7], // MID VERT
+      [2, 5, 8], // RIGHT VERT
+    ];
 
-    if (this.cells.join() === diagonalWin) {
-      return 'O';
+    const hasWon = winStates.some((combination) =>
+      [
+        this.cells[combination[0]],
+        this.cells[combination[1]],
+        this.cells[combination[2]],
+      ].every((cell) => cell === pin),
+    );
+
+    if (hasWon) {
+      this.outcome = pin;
     }
 
-    // yelling the player X won the game in a vertical move
-    // >>> 1.state of the game
-    // >>> 2.rules engine to understand if AFTER a move the game is over.
-    return 'X';
+    const isDraw = this.cells.every((cell) => cell !== ' ');
+
+    if (isDraw) {
+      this.outcome = 'DRAW';
+    }
   }
 }
 
