@@ -33,6 +33,24 @@
   - 0 - top left
   - O wins --> expect
 
+## Player X - Moves compliant with the rules to have a board with the player X won in horizontal at the top of it.
+- **BRUTE FORCE** Test scenario : Moves
+  - X - top left
+  - O - ~middle~ left
+  - X - top middle
+  - O - bottom left
+  - X - top right
+  - X wins --> expect
+
+
+## Scenario 3 - Player 0 wins with a Diagonal line (/)
+  ## Pomodoro 1
+    - Finish off the horizonal victory scenario
+    - Tackle Tech Debt (Refactor)
+  ## Pomodoro 2
+  ## Pomodoro 3
+
+
 ---
 
 # Refactoring

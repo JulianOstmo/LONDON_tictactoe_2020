@@ -23,7 +23,7 @@ class Board {
     // yelling the player X won the game in a vertical move
     // >>> 1.state of the game
     // >>> 2.rules engine to understand if AFTER a move the game is over.
-    return "X"
+    return "X";
   }
 }
 
