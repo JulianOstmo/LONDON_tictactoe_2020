@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage --verbose",
+    "lint": "eslint . --cache --fix",
     "test:watch": "jest --watchAll --coverage --verbose",
-    "lint": "eslint . --cache --fix"
+    "test": "jest --coverage --verbose"
   },
   "author": "",
   "license": "ISC",
