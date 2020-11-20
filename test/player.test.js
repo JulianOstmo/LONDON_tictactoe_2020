@@ -162,23 +162,22 @@ describe('Vertical Victory', () => {
 });
 
 describe('When a move is made, it should be shown to the user', () => {
+  let board;
+
   const mockConsole = jest.spyOn(global.console, 'log');
   mockConsole.mockImplementation((val) => val);
 
   beforeEach(() => {
     mockConsole.mockClear();
     mockConsole.mockReset();
+    board = new Board();
   });
 
   it('expect the user to see an empty board at the start of the game', () => {
-    // eslint-disable-next-line no-unused-vars
-    const board = new Board();
-
     expect(mockConsole).toBeCalledWith(EMPTY_BOARD);
   });
 
   it('expect Player X to see an updated game board after they have made a move', () => {
-    const board = new Board();
     const playerX = new Player('X', board);
 
     playerX.placePin(0);
@@ -187,7 +186,6 @@ describe('When a move is made, it should be shown to the user', () => {
   });
 
   it('expect Player O to see an updated game board stating they have won', () => {
-    const board = new Board();
     const playerX = new Player('X', board);
     const playerO = new Player('O', board);
 
