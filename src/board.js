@@ -34,6 +34,7 @@ class Board {
     return `${board}\n${outcomeStatement}`;
   }
 
+  /* eslint class-methods-use-this: ["error", { "exceptMethods": ["renderToConsole"] }] */
   renderToConsole(payload) {
     console.log(payload);
   }
